@@ -1,0 +1,75 @@
+\mode<presentation>
+
+%title page
+\defbeamertemplate*{title page}{graz}[1][]
+{
+    \vspace{.02\pageheight}
+    
+    \ifx\presentationlogopath\undefined\relax\else
+    \begin{flushright}
+       \includegraphics[height=.07\pageheight]{\presentationlogopath}
+    \end{flushright}
+    \fi
+
+    \vspace{.2\pageheight}
+
+    \begin{tikzpicture}
+        \node[align=left, text width=0.90\textwidth, execute at begin node=\setlength{\baselineskip}{5ex}] (titlenode) {\color{GrazBlack}\usebeamerfont{title}\baselineskip=10pt\inserttitle};
+        \node[align=left, text width=0.90\textwidth, below = 2em of titlenode.south] (authnode) {
+            \color{GrazBlack}\usebeamerfont{second title}\insertauthor\usebeamerfont{third title}\it\if\insertsecondauthors\empty\relax\else\hskip 10pt \\with \insertsecondauthors\fi
+        };
+        \node[align=left, text width=0.90\textwidth, below = 1em of authnode.south] (datenode) {
+            \color{GrazBlack}\usebeamerfont{fourth title}\if\insertdate\empty\relax\else\insertdate\fi
+        };
+        \node[left=1em of titlenode.north west] (cul) {};
+        \node[left=0.5em of titlenode.north west] (cur) {};
+        \node[left=1em of datenode.south west] (cdl) {};
+        \node[left=0.5em of datenode.south west] (cdr) {};
+
+        \filldraw[fill=GrazYellow, color=GrazYellow] (cul.center) -- (cur.center) -- (cdr.center) -- (cdl.center) -- (cul.center);
+    \end{tikzpicture}
+}
+
+%itemize and enumerate and description
+\defbeamertemplate*{itemize item}{graz}[1][4pt]{\resizebox{#1}{!}{\tikz[baseline=-0.5em]\node[draw=GrazYellow, fill=GrazYellow, minimum width = #1, minimum height = #1] (0,0) {};}}
+\defbeamertemplate*{itemize subitem}{graz}[1][3pt]{\resizebox{#1}{#1}{\tikz[baseline=-0.5em]\node[draw=GrazDarkerGray, fill=GrazDarkerGray, minimum size = #1, shape = circle] (0,0) {};}}
+\defbeamertemplate*{description item}{graz}[1][0.8]{\colorbox{white!80!GrazYellow}{\color{GrazDarkerGray}\insertdescriptionitem}}
+
+\defbeamertemplate*{footnote}{graz}{
+    % \begin{center}
+    %     \begin{tikzpicture}
+    %         \node[minimum width=.95\textwidth, fill=GrazLighterGray, minimum height=2em] (ob) {};
+    %         \node at ($(ob.west) + (0.3, 0)$) (fnm) {\insertfootnotemark};
+    %         \node[right=0.5ex of fnm.center] {\insertfootnotetext};
+    %     \end{tikzpicture}
+    % \end{center}
+    % \exactframe{\linewidth}{2em}{
+    %     \begin{tikzpicture}
+    %         \node (fnm) {\insertfootnotemark};
+    %         \node[right=0.5ex of fnm.center] {\insertfootnotetext};
+    %     \end{tikzpicture}
+    % }
+    \colorbox{GrazLighterGray}{\makebox[.9\linewidth][l]{\insertfootnotemark \hskip0.5em \insertfootnotetext}}
+}
+
+% \defbeamertemplate*{footnote}{ % <---
+%   \makebox[1em][l]{\insertfootnotemark}%
+%   \begin{minipage}{\dimexpr\linewidth-1em}
+%     \footnotesize\linespread{0.84}\selectfont\insertfootnotetext
+%   \end{minipage}\vskip 0pt 
+%                             }% end of footnote template
+
+%TOC
+\defbeamertemplate*{section in toc}{graz}[1][]
+{
+    \tikz\node[text=GrazDarkerGray, fill=GrazYellow, minimum size = #1] (0,0) {\inserttocsectionnumber};
+    \hskip10pt\usebeamerfont{title}\color{GrazBlack}\bf\dunderline[-6pt]{2.5pt}{\inserttocsection}
+}
+\defbeamertemplate*{section in toc shaded}{graz}[1][]
+{
+    \resizebox{0.3\baselineskip}{!}{\tikz\node[text=GrazDarkerGray, fill=GrazYellow, minimum size = #1] (0,0) {\inserttocsectionnumber};}
+    \usebeamerfont{fourth title}\color{GrazDarkGray}{\inserttocsection}
+}
+
+\AfterBeginDocument{\setbeamertemplate{blocks}[default]}
+\mode<all>

@@ -1,0 +1,30 @@
+\mode<presentation>
+
+%frame title
+\defbeamertemplate*{frametitle}{graz}[1][]
+{
+    % \begin{beamercolorbox}[wd=\paperwidth, sep=0]{frame title}
+    %     \begin{tikzpicture}
+    %         \node[align=left,text width=0.90\textwidth] (titlenode) {\usebeamerfont{title}\color{GrazBlack}\insertframetitle};
+    %         \node[left=0.002\textwidth of titlenode.north west] (cul) {};
+    %         \node[align=left,text width=0.90\textwidth, below=0em of titlenode] (subtitlenode) {\usebeamerfont{third title}\color{GrazBlack}\insertframesubtitle};
+    %         \node[left=0.002\textwidth of subtitlenode.south west] (cdl) {};
+    %         \filldraw[color=GrazYellow] (cul.center) -- (titlenode.north west) -- (subtitlenode.south west) -- (cdl.center) -- (cul.center);
+    %         \useasboudingbox (cul.north west) -- (titlenode.north east) -- (subtitlenode.south east) -- (cdl.south east) -- (cul.north west);
+    %     \end{tikzpicture}
+    % \end{beamercolorbox}
+    \begin{beamercolorbox}[left, wd=\paperwidth, sep=5pt]{frame title}%
+        \usebeamerfont{frame title}\dunderline[-4pt]{2.5pt}{\insertframetitle}\hskip10pt%
+        \doublespacing\usebeamerfont{third title}\large\it{\insertframesubtitle}%
+    \end{beamercolorbox}
+    %\noindent\makebox[\textwidth]{\color{GrazLightGray}\rule{\paperwidth}{0.02pt}}
+}   
+
+\defbeamertemplate*{footline}{graz}[1][]
+{
+    \begin{beamercolorbox}[right, sep=2pt]{frame title}
+        \color{GrazBlack}\usebeamerfont{frame nav}\if\insertframenumber 1 \relax\else\insertframenumber / \inserttotalframenumber\fi
+    \end{beamercolorbox}
+}
+
+\mode<all>

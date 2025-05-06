@@ -1,0 +1,97 @@
+\mode<presentation>
+
+%tikz reqs
+\RequirePackage{tikz}
+\RequirePackage{tikz-feynman}
+\usetikzlibrary{positioning, calc}
+\RequirePackage{graphicx}
+\RequirePackage{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{amsmath}
+\RequirePackage{slashed}
+\RequirePackage{bm}
+\RequirePackage{pgfkeys}
+\RequirePackage{setspace}
+\RequirePackage{soul}
+\RequirePackage{transparent}
+\RequirePackage{adjustbox}
+%\RequirePackage{gnuplot-lua-tikz}
+
+%math defs
+\AtBeginDocument{\newcommand{\vect}[1]{\boldmath{#1}}}
+\AtBeginDocument{\renewcommand{\Re}{\operatorname{Re}}}
+\AtBeginDocument{\renewcommand{\Im}{\operatorname{Im}}}
+\newcommand\setrepopath[1]{\def\repopath{#1}}
+\newcommand\loadfromrepo[2][]{\includegraphics[#1]{\repopath#2}}
+\newcommand\loadtexfromrepo[2][]{\begin{adjustbox}{#1}\input{\repopath#2}\end{adjustbox}}
+\newcommand\setlogopath[1]{\def\presentationlogopath{#1}}
+\newcommand\secondauthors[1]{\def\insertsecondauthors{#1}}
+
+%somethings to prevent bugs
+\AtBeginDocument{\ifx\insertsecondauthors\undefined\def\insertsecondauthors{}\else\relax\fi}
+
+%footnoterule
+\AtBeginDocument{\renewcommand{\footnoterule}{\color{GrazYellow}\rule{.915\linewidth}{0.075em}}}
+\AtBeginDocument{\renewcommand{\thefootnote}{\colorbox{white!60!GrazYellow}{\textit{\arabic{footnote}}}}}
+\setlength{\footnotesep}{\baselineskip}
+\AtBeginDocument{\skip\@mpfootins0pt}
+\newcommand{\exactframe}[3]{%
+  \fbox{%
+    \rule{\dimexpr#1-2\fboxsep-2\fboxrule}{0pt}% width
+    \rule{0pt}{\dimexpr#2-2\fboxsep-2\fboxrule}% height
+    #3
+  }%
+}
+
+\newcommand\dunderline[3][-1pt]{{%
+  \sbox0{#3}%
+  \ooalign{\copy0\cr\color{GrazYellow}\rule[\dimexpr#1-#2\relax]{\wd0}{#2}\cr}}}
+
+%at each section
+\AtBeginSection
+{
+  \begin{frame}<beamer>
+    \frametitle{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+%new command for the table of contents
+\newcommand{\talkoutline}{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[part=1]
+  \end{frame}
+}
+
+\newcommand{\highlight}[1]
+{
+  {\colorbox{white!60!GrazYellow}{\textbf{#1}}}
+}
+\newcommand{\mathhighlight}[1]
+{
+  \begin{center}
+    \colorbox{white!60!GrazYellow}
+    {
+      \(\displaystyle #1\)
+    }
+  \end{center}
+}
+
+\newcommand{\funQCD}{\textbf{\colorbox{white!60!GrazYellow}{{\color{red} F}{\color{green} U}{\color{blue} N}}ctional Methods}}
+\newcommand{\citesources}[2]{\tiny \color{GrazDarkGray} (\href{#2}{#1})}
+
+%settings
+\useinnertheme{graz}
+\useoutertheme{graz}
+\usecolortheme{graz}
+\usefonttheme{graz}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow = true]
+
+%tikz scaling hack
+\newenvironment{scalable-tikz}[1][1]
+  {\begin{adjustbox}{scale=#1}\begin{tikzpicture}}
+  {\end{tikzpicture}\end{adjustbox}}
+\mode<all>
