@@ -62,12 +62,12 @@
 %TOC
 \defbeamertemplate*{section in toc}{graz}[1][]
 {
-    \tikz\node[text=GrazDarkerGray, fill=GrazYellow, minimum size = #1] (0,0) {\inserttocsectionnumber};
+    \tikz\node[text=GrazDarkerGray, fill=GrazYellow] (0,0) {\inserttocsectionnumber};
     \hskip10pt\usebeamerfont{title}\color{GrazBlack}\bf\dunderline[-6pt]{2.5pt}{\inserttocsection}
 }
 \defbeamertemplate*{section in toc shaded}{graz}[1][]
 {
-    \resizebox{0.3\baselineskip}{!}{\tikz\node[text=GrazDarkerGray, fill=GrazYellow, minimum size = #1] (0,0) {\inserttocsectionnumber};}
+    \resizebox{0.3\baselineskip}{!}{\tikz\node[text=GrazDarkerGray, fill=GrazYellow] (0,0) {\inserttocsectionnumber};}
     \usebeamerfont{fourth title}\color{GrazDarkGray}{\inserttocsection}
 }
 
